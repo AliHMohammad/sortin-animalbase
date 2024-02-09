@@ -1,4 +1,6 @@
-public class Animal {
+package base.animal.data;
+
+public class Animal implements Comparable<Animal> {
     private int id;
     private String name;
     private String type;
@@ -65,14 +67,14 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", description='" + description + '\'' +
-                ", age=" + age +
-                ", star=" + star +
-                ", winner=" + winner +
-                '}';
+        return
+                id +
+                " | name: " + name +
+                " | type: " + type +
+                " | description: " + description +
+                " | age: " + age +
+                " | star: " + star +
+                " | winner: " + winner;
     }
 
     public Animal() {
@@ -108,5 +110,25 @@ public class Animal {
         this.type = animalStringArray[3];
         this.age = age;
     }
+
+    public Animal(String animalString, int age, boolean star, boolean winner) {
+        //Splits the animalString.
+        String[] animalStringArray = animalString.split(" ");
+
+        //Sets the fields.
+        this.name = animalStringArray[0];
+        this.description = animalStringArray[2];
+        this.type = animalStringArray[3];
+        this.age = age;
+        this.winner = winner;
+        this.star = star;
+    }
+
+
+    @Override
+    public int compareTo(Animal o) {
+        return this.name.compareTo(o.name);
+    }
+
 
 }
